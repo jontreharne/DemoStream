@@ -1,0 +1,2 @@
+variable "count" {}
+variable "keypair" {}
