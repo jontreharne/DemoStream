@@ -6,7 +6,7 @@ resource "aws_instance" "httpswebserver" {
 
   connection {
           user = "ec2-user"
-          private_key = "${file("/Users/jontreharne/.ssh/AWS-WebServers-KeyPair.pem")}"
+          private_key = "${file("~/.ssh/AWS-WebServers-KeyPair.pem")}"
       }
 
   security_groups = ["httpswebserver_sg","ssh_sg"]

@@ -6,24 +6,24 @@ resource "aws_instance" "websitewebserver" {
 
   connection {
           user = "ec2-user"
-          private_key = "${file("/Users/jontreharne/.ssh/AWS-WebServers-KeyPair.pem")}"
+          private_key = "${file("~/.ssh/AWS-WebServers-KeyPair.pem")}"
       }
 
   security_groups = ["httpwebserver_sg","ssh_sg"]
 
   tags {
-    Name = "HTTPWebServer.${count.index}"
+    Name = "WebsiteWebServer.${count.index}"
   }
 
   provisioner "file" {
-    source      = "bootstraps/http_webserver.sh"
-    destination = "/tmp/http_webserver.sh"
+    source      = "bootstraps/website_webserver.sh"
+    destination = "/tmp/website_webserver.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/http_webserver.sh",
-      "sudo /tmp/http_webserver.sh",
+      "chmod +x /tmp/website_webserver.sh",
+      "sudo /tmp/website_webserver.sh",
     ]
   }
 }

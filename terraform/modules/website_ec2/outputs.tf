@@ -1,3 +1,3 @@
-output "webserverIP" {
-  value = "${aws_instance.httpwebserver.*.public_ip}"
+output "websiteIP" {
+  value = "${aws_instance.websitewebserver.*.public_ip}"
 }
