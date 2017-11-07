@@ -12,6 +12,12 @@ module "security" {
   source = "modules/security"
 }
 
+module "website_ec2" {
+  source = "modules/website_ec2"
+  count = 1
+  keypair = "AWS-WebServers-KeyPair"
+}
+
 module "http_ec2" {
   source = "modules/http_ec2"
   count = 0
