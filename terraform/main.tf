@@ -48,6 +48,7 @@ module "route_tables" {
 }
 
 module "alb" {
+  run = "false"
 	source = "modules/alb"
 	public_subnets = "${module.subnets.public_subnets}"
 	vpc_id = "${module.vpc.vpc_id}"
@@ -78,10 +79,12 @@ module "https_ec2" {
 
 module "http_ec2" {
   source = "modules/http_ec2"
-  count = 2
+  count = 1
   keypair = "AWS-WebServers-KeyPair"
   availability_zones = "${var.availability_zones}"
-  private_subnets = "${module.subnets.private_subnets}"
+  public_subnets = "${module.subnets.public_subnets}"
   httpwebserver_sg = "${module.security.httpwebserver_sg}"
   ssh_sg = "${module.security.ssh_sg}"
+  initial_target_group = "${module.alb.initial_target_group}"
+  managerprofile = "${module.iam.managerprofile}"
 }

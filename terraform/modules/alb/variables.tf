@@ -10,3 +10,4 @@ variable "httpswebserver_sg" {}
 variable "httpwebserver_sg" {}
 variable "ssh_sg" {}
 variable "managerprofile" {}
+variable "run" {}
