@@ -3,6 +3,8 @@ resource "aws_instance" "httpwebserver" {
   ami           = "ami-1a7f6d7e"
   instance_type = "t2.micro"
   key_name  = "${var.keypair}"
+  availability_zone = "${element(var.availability_zones, count.index)}"
+  subnet_id = "${element(var.subnet_ids, count.index)}"
 
   connection {
           user = "ec2-user"

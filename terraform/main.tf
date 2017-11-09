@@ -22,11 +22,13 @@ module "http_ec2" {
   source = "modules/http_ec2"
   count = 0
   keypair = "AWS-WebServers-KeyPair"
+  availability_zones = "${var.zones}"
+  subnet_ids = "${var.subnets}"
 }
 
 module "https_ec2" {
   source = "modules/https_ec2"
-  count = 0
+  count = 1
   keypair = "AWS-WebServers-KeyPair"
   security_group_id = "${module.security.security_group_id}"
 }
