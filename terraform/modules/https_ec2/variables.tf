@@ -1,3 +1,5 @@
 variable "count" {}
 variable "keypair" {}
-variable "security_group_id" {}
+variable "httpswebserver_sg" {}
+variable "ssh_sg" {}
+variable "public_subnets" { type = "list" }

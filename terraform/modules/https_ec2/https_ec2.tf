@@ -1,11 +1,4 @@
 
-data "aws_security_group" "httpswebserver_sg" {
-  name = "httpswebserver_sg"
-}
-data "aws_security_group" "ssh_sg" {
-  name = "ssh_sg"
-}
-
 data "aws_route53_zone" "jws-awsome-domain" {
   name = "jws-awsome-domain.co.uk."
 }
@@ -28,8 +21,8 @@ resource "aws_route53_record" "httpswebserver" {
 
 resource "aws_network_interface" "httpswebserver-nic" {
  count = "${var.count}"
- subnet_id       = "subnet-ccf75281"
- security_groups = ["${data.aws_security_group.httpswebserver_sg.id}","${data.aws_security_group.ssh_sg.id}"]
+ subnet_id = "${element(var.public_subnets, 1)}"
+ security_groups = ["${var.httpswebserver_sg}","${var.ssh_sg}"]
 
  tags {
    Name = "HTTPSWebServer.${count.index}"

@@ -1,8 +1,8 @@
 variable "count" {}
 variable "keypair" {}
-variable "subnet_ids" {
-  type = "list"
-}
+variable "private_subnets" { type = "list" }
 variable "availability_zones" {
   type = "list"
 }
+variable "httpwebserver_sg" {}
+variable "ssh_sg" {}

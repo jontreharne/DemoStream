@@ -1,6 +1,7 @@
 resource "aws_security_group" "httpwebserver_sg" {
   name        = "httpwebserver_sg"
   description = "Allow inbound traffic"
+  vpc_id = "${var.vpc_id}"
 
   ingress {
     from_port   = 80
@@ -20,6 +21,7 @@ resource "aws_security_group" "httpwebserver_sg" {
 resource "aws_security_group" "httpswebserver_sg" {
   name        = "httpswebserver_sg"
   description = "Allow inbound traffic"
+  vpc_id = "${var.vpc_id}"
 
   ingress {
     from_port   = 443
@@ -39,6 +41,7 @@ resource "aws_security_group" "httpswebserver_sg" {
 resource "aws_security_group" "ssh_sg" {
   name        = "ssh_sg"
   description = "Allow inbound traffic"
+  vpc_id = "${var.vpc_id}"
 
   ingress {
     from_port   = 22
