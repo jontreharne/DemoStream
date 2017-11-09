@@ -14,7 +14,7 @@ module "security" {
 
 module "website_ec2" {
   source = "modules/website_ec2"
-  count = 1
+  count = 0
   keypair = "AWS-WebServers-KeyPair"
 }
 
@@ -28,4 +28,5 @@ module "https_ec2" {
   source = "modules/https_ec2"
   count = 0
   keypair = "AWS-WebServers-KeyPair"
+  security_group_id = "${module.security.security_group_id}"
 }
