@@ -1,3 +1,4 @@
 account.tfvars
 .terraform
 terraform.tfstate.backup
+terraform.exe
